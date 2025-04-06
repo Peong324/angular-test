@@ -1,0 +1,63 @@
+<html>
+<body>
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="#" class="logo">Clouthaus</a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+<div class="hero">
+  <video [muted]="'muted'" loop autoplay [playsInline]="">
+    <source src="assets/videos/hero-video.mp4" type="video/mp4">
+  </video>
+</div>
+<div *ngIf="clouthausData && !loading" class="clouthaus-container">
+  
+  <div *ngFor="let detail of clouthausData.projectDetails; let i = index" class="section" [ngClass]="{'reverse': i % 2 === 1}">
+      <div class="image">
+        <img [src]="detail.imageUrl" alt="{{ detail.name }}">
+      </div>
+       <div class="textbox">
+          <h2 [innerHTML]="detail.name"></h2>
+          <hr>
+          <p [innerHTML]="detail.description"></p>
+          <p *ngIf="detail.param1" [innerHTML]="detail.param1"></p>
+      </div>  
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-contact">
+      <a href="#" class="footer-logo">CloutHaus</a>
+              CloutHaus Sales Gallery<br>
+        {{ clouthausData.address1 }}<br>
+        {{ clouthausData.address2 }}<br>
+        {{ clouthausData.address3 }} <br>
+        Phone: +{{ clouthausData.countryCode }}{{ clouthausData.phoneNo }}<br>
+        Email: {{ clouthausData.email }}
+      </div>
+      <div class="footer-description">
+        <p>
+            An innovator firmly focused in defying the usual mould of the property industry, TA Global works fearlessly in crafting distinctive living experiences for all through three principal elements: property development, property investment and property management.
+        </p>
+    </div>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <!-- Add more icons as needed -->
+      </div>
+      <div class="footer-contact">
+      <h1>{{ clouthausData.projectName }}</h1>
+      <p >{{ clouthausData.descriptionTitle }}</p>
+      <p class="footer-copyright">&copy; 2025 CloutHaus. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
